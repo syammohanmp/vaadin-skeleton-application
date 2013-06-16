@@ -1,4 +1,4 @@
 vaadin-skelton-application
 ==========================
 
-Sample application skeleton using vaadin framework
+Sample application skelton using vaadin framework.This tutorial is intended for software developers learning to use Vaadin for developing web applications.
