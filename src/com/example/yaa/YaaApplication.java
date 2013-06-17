@@ -3,6 +3,9 @@ package com.example.yaa;
  
 
 import com.example.yaa.data.PersonContainer;
+
+
+
 import com.example.yaa.ui.ListView;
 import com.example.yaa.ui.NavigationTree;
 import com.example.yaa.ui.PersonForm;
@@ -14,12 +17,16 @@ import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
+import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
-
+import com.vaadin.ui.Button.ClickListener;
+ 
+ 
 public class YaaApplication extends Application implements Button.ClickListener,
                                                            com.vaadin.data.Property.ValueChangeListener,
-                                                           ItemClickListener
+                                                           ItemClickListener 
+                                                           
                                                            {
 	 
 	
@@ -51,8 +58,10 @@ public class YaaApplication extends Application implements Button.ClickListener,
 	
 	@SuppressWarnings("deprecation")
 	private void buildMainLayout() {
+		setTheme("contacts");
 		setMainWindow(new Window("Ya my demo"));
 		VerticalLayout layout = new VerticalLayout();
+		layout.setStyleName("yii");
 		layout.setSizeFull();
 		layout.addComponent(createToolbar());
 		horizontalSplit.setFirstComponent(getNavigationTree());
@@ -71,13 +80,34 @@ public class YaaApplication extends Application implements Button.ClickListener,
 	public HorizontalLayout createToolbar() 
 	{
 		HorizontalLayout lo = new HorizontalLayout();
-		lo.addComponent(newContact);
-		lo.addComponent(search);
-		lo.addComponent(share);
-		lo.addComponent(help);
-		
-		search.addListener((Button.ClickListener) this);
-		return lo;
+        lo.addComponent(newContact);
+        lo.addComponent(search);
+        lo.addComponent(share);
+        lo.addComponent(help);
+
+        search.addListener((ClickListener) this);
+        share.addListener((ClickListener) this);
+        help.addListener((ClickListener) this);
+        newContact.addListener((ClickListener) this);
+
+        search.setIcon(new ThemeResource("icons/32/folder-add.png"));
+        share.setIcon(new ThemeResource("icons/32/users.png"));
+        help.setIcon(new ThemeResource("icons/32/help.png"));
+        newContact.setIcon(new ThemeResource("icons/32/document-add.png"));
+        
+        
+
+        lo.setMargin(true);
+        lo.setSpacing(true);
+        lo.setStyleName("toolbar");
+        lo.setWidth("100%");
+
+        Embedded em = new Embedded("", new ThemeResource("images/logo.png"));
+        lo.addComponent(em);
+        lo.setComponentAlignment(em, Alignment.MIDDLE_RIGHT);
+        lo.setExpandRatio(em, 1);
+
+        return lo;
 		
 		}
 	
@@ -133,6 +163,7 @@ public class YaaApplication extends Application implements Button.ClickListener,
 	    	final Button source = event.getButton();
 	    	if (source == search) {
 	    	showSearchView();
+	    	 
 	    	}
 	    }
 

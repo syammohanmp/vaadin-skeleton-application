@@ -17,5 +17,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/VAADIN/themes/contacts/bp/js/bootstrap.js"/>
+	<classpathentry kind="lib" path="WebContent/VAADIN/themes/contacts/bp/js/bootstrap.min.js"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
